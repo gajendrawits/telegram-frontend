@@ -41,6 +41,7 @@
     }
 
     async function saveLink() {
+      document.getElementById("saveLink").className += " " + "disabled";
       const botArray = getQueryVariable('botId').split("-");
       const res = await fetch("https://staging.chapterx.network/api/bot/addMeeting", {
         method: "post",
@@ -102,8 +103,9 @@
 
       <label for="text" class="form-label my-2">Meeting Link</label>
       <input type="text" name="text" class="form-control" placeholder="Eg: meet.google.com/zrs-kydu-dvh">
-      <button class="btn btn-success my-4" style="background: #FF6D28 !important; border-color: #FF6D28; outline: 0;"
-        type="submit" onClick="saveLink()">Save Link</button>
+      <button class="btn btn-success my-4 " id="saveLink"
+        style="background: #FF6D28 !important; border-color: #FF6D28; outline: 0;" type="submit"
+        onClick="saveLink()">Save Link</button>
     </div>
   </section>
 </body>
