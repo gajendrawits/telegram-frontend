@@ -41,7 +41,7 @@
     }
 
     async function saveLink() {
-      document.getElementById("meetingLink").className += " " + "disabled";
+      document.getElementById("saveLink").className += " " + "disabled";
       const meetingLink = document.getElementById("meetingLink").value
       if (!meetingLink) {
         alert("Please add Meeting Link")
@@ -97,7 +97,7 @@
       <input type="text" name="text" id="meetingLink" class="form-control"
         placeholder="Eg: meet.google.com/zrs-kydu-dvh">
       <div class="text-center">
-        <button type="submit" class="btn btn-lg text-white my-4 " id="saveLink"
+        <button type="submit" class="btn  btn-lg text-white my-4 " id="saveLink"
           style="background: #FF6D28 !important; border-color: #FF6D28; outline: 0;" type="submit"
           onClick="saveLink()">Save Link</button>
       </div>
@@ -105,9 +105,5 @@
     </div>
   </section>
 </body>
-<script>
-  document.querySelector('#locationData').innerHTML = window.location.toString()
-
-</script>
 
 </html>
