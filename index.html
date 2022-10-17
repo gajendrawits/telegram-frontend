@@ -40,7 +40,7 @@
       alert('Query Variable ' + variable + ' not found');
     }
 
-    function saveLink() {
+    async function saveLink() {
       document.getElementById("saveLink").className += " " + "disabled";
       const meetingLink = document.getElementById("meetingLink").value
       if (!meetingLink) {
@@ -49,7 +49,7 @@
         return false
       }
       const botArray = getQueryVariable('botId').split("-");
-      const res = fetch("https://staging.chapterx.network/api/bot/addMeeting", {
+      const res = await fetch("https://staging.chapterx.network/api/bot/addMeeting", {
         method: "post",
         headers: {
           'Accept': 'application/json',
