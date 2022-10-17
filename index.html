@@ -43,8 +43,10 @@
     async function saveLink() {
       document.getElementById("meetingLink").className += " " + "disabled";
       const meetingLink = document.getElementById("meetingLink").value
-      if (!meetingLink)
+      if (!meetingLink) {
         alert("Please add Meeting Link")
+        return false
+      }
       const botArray = getQueryVariable('botId').split("-");
       const res = await fetch("https://staging.chapterx.network/api/bot/addMeeting", {
         method: "post",
