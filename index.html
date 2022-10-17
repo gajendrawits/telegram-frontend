@@ -41,6 +41,8 @@
     }
 
     async function saveLink() {
+      const botArray = getQueryVariable('botId');
+      console.log(botArray.split("-"))
       const res = await fetch("http://localhost:4000/api/bot/addMeeting", {
         method: "post",
         headers: {
@@ -49,21 +51,21 @@
         },
         //make sure to serialize your JSON body
         body: JSON.stringify({
-          "bot_id": getQueryVariable('botId'),
-          "host_chat_id": getQueryVariable('hostChatId'),
-          "receiver_chat_id": getQueryVariable('receiverChatId'),
+          "bot_id": botArray[0],
+          "host_chat_id": botArray[1],
+          "receiver_chat_id": botArray[2],
           "meeting_link": "DataTypes.TEXT"
         })
       })
       if (res.status === 200) {
-        await fetch("https://api.telegram.org/" + getQueryVariable('botId') + "/sendMessage?chat_id=" + getQueryVariable('receiverChatId') + "&text=MeetingLink Saved", {
+        await fetch("https://api.telegram.org/" + botArray[0] + "/sendMessage?chat_id=" + botArray[1] + "&text=MeetingLink Saved", {
           method: "get",
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
         })
-        await fetch("https://api.telegram.org/" + getQueryVariable('botId') + "/sendMessage?chat_id=" + getQueryVariable('hostChatId') + "&text=hello%20world", {
+        await fetch("https://api.telegram.org/" + botArray[0] + "/sendMessage?chat_id=" + botArray[2] + "&text=hello%20world", {
           method: "get",
           headers: {
             'Accept': 'application/json',
