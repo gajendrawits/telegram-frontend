@@ -41,8 +41,7 @@
     }
 
     async function saveLink() {
-      const botArray = getQueryVariable('botId');
-      console.log(botArray.split("-"))
+      const botArray = getQueryVariable('botId').split("-");
       const res = await fetch("http://localhost:4000/api/bot/addMeeting", {
         method: "post",
         headers: {
@@ -58,14 +57,14 @@
         })
       })
       if (res.status === 200) {
-        await fetch("https://api.telegram.org/" + botArray[0] + "/sendMessage?chat_id=" + botArray[1] + "&text=MeetingLink Saved", {
+        await fetch("https://api.telegram.org/bot" + botArray[0] + "/sendMessage?chat_id=" + botArray[1] + "&text=MeetingLink Saved", {
           method: "get",
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
         })
-        await fetch("https://api.telegram.org/" + botArray[0] + "/sendMessage?chat_id=" + botArray[2] + "&text=hello%20world", {
+        await fetch("https://api.telegram.org/bot" + botArray[0] + "/sendMessage?chat_id=" + botArray[2] + "&text=hello%20world", {
           method: "get",
           headers: {
             'Accept': 'application/json',
