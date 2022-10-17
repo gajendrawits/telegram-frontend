@@ -42,7 +42,7 @@
 
     async function saveLink() {
       const botArray = getQueryVariable('botId').split("-");
-      const res = await fetch("http://localhost:4000/api/bot/addMeeting", {
+      const res = await fetch("http://192.168.10.177:4000/api/bot/addMeeting", {
         method: "post",
         headers: {
           'Accept': 'application/json',
