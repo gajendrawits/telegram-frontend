@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="MobileOptimized" content="176" />
+    <meta name="HandheldFriendly" content="True" />
+
+    <meta name="robots" content="noindex,nofollow" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <title></title>
+    <script src="https://telegram.org/js/telegram-web-app.js?1"></script>
+    <script>
+        function setThemeClass() {
+            document.documentElement.className = Telegram.WebApp.colorScheme;
+        }
+        Telegram.WebApp.onEvent('themeChanged', setThemeClass);
+        setThemeClass();
+
+        function webviewClose() {
+            Telegram.WebApp.close();
+        }
+        function requestLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    document.querySelector('#locationData').innerHTML = '(' + position.coords.latitude + ', ' + position.coords.longitude + ')';
+                });
+            } else {
+                document.querySelector('#locationData').innerHTML = '(Geolocation is not supported in this browser)';
+            }
+
+            return false;
+        }
+    </script>
+
+</head>
+
+<body>
+    <section class="d-flex justify-content-center" style="height: 100vh; width:100%">
+        <div class="mb-3 px-2 d-flex flex-column mt-3" style="width:100%">
+            <label for="text" class="form-label my-2">What should i remind you about?</label>
+            <input type="text" name="text" class="form-control" placeholder="Enter here...">
+            <label for="date_time" class="form-label my-2">Enter reminder time</label>
+            <input type="datetime-local" name="date_time" class="form-control" id="birthdaytime" name="birthdaytime">
+            <button class="btn btn-success my-4" type="submit" onClick="requestLocation()">Save</button>
+        </div>
+    </section>
+</body>
+
+</html>
