@@ -41,7 +41,10 @@
     }
 
     async function saveLink() {
-      document.getElementById("saveLink").className += " " + "disabled";
+      document.getElementById("meetingLink").className += " " + "disabled";
+      const meetingLink = document.getElementById("meetingLink").value
+      if (!meetingLink)
+        alert("Please add Meeting Link")
       const botArray = getQueryVariable('botId').split("-");
       const res = await fetch("https://staging.chapterx.network/api/bot/addMeeting", {
         method: "post",
@@ -54,42 +57,29 @@
           "bot_id": botArray[0],
           "host_chat_id": botArray[1],
           "receiver_chat_id": botArray[2],
-          "meeting_link": "DataTypes.TEXT"
+          "meeting_link": meetingLink
         })
       })
       if (res.status === 200) {
-        await fetch("https://api.telegram.org/bot" + botArray[0] + "/sendMessage?chat_id=" + botArray[1] + "&text=MeetingLink Saved", {
+        const message = "Here is your meeting link" + meetingLink
+        fetch("https://api.telegram.org/bot" + botArray[0] + "/sendMessage?chat_id=" + botArray[1] + "&text=" + message, {
           method: "get",
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
         })
-        await fetch("https://api.telegram.org/bot" + botArray[0] + "/sendMessage?chat_id=" + botArray[2] + "&text=hello%20world", {
+        fetch("https://api.telegram.org/bot" + botArray[0] + "/sendMessage?chat_id=" + botArray[2] + "&text=" + message, {
           method: "get",
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
+        }).then(() => {
+          webviewClose()
         })
-          .then(() => {
-            webviewClose()
-          })
       }
-      // .then((response) => {
-      //     if (response.status === 200) {
-      //         fetch("https://api.telegram.org/bot5656598831:AAFJhMPZtvBlCmSgiZbDw_NiyCJA9g0uoBM/sendMessage?chat_id=1135390370&text=hello%20world", {
-      //             method: "get",
-      //             headers: {
-      //                 'Accept': 'application/json',
-      //                 'Content-Type': 'application/json'
-      //             },
-      //             //make sure to serialize your JSON body
 
-      //         }).then((response) => { return response.json(); });
-      //     }
-      //     //do something awesome that makes the world a better place
-      // });
     }
 
   </script>
@@ -100,12 +90,16 @@
   <section class="d-flex justify-content-center " style="height: 100vh; width: 100%">
     <div class="mb-3 mt-3 p-2 d-flex flex-column" style="width:100%">
       <!-- <span id="locationData"></span> -->
-
-      <label for="text" class="form-label my-2">Meeting Link</label>
-      <input type="text" name="text" class="form-control" placeholder="Eg: meet.google.com/zrs-kydu-dvh">
-      <button class="btn btn-success my-4 " id="saveLink"
-        style="background: #FF6D28 !important; border-color: #FF6D28; outline: 0;" type="submit"
-        onClick="saveLink()">Save Link</button>
+      <!-- <form action="#" class=""> -->
+      <label for=" text" class="form-label my-2">Meeting Link</label>
+      <input type="text" name="text" id="meetingLink" class="form-control"
+        placeholder="Eg: meet.google.com/zrs-kydu-dvh">
+      <div class="text-center">
+        <button type="submit" class="btn btn-lg text-white my-4 " id="saveLink"
+          style="background: #FF6D28 !important; border-color: #FF6D28; outline: 0;" type="submit"
+          onClick="saveLink()">Save Link</button>
+      </div>
+      <!-- </form> -->
     </div>
   </section>
 </body>
