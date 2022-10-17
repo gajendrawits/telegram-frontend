@@ -19,6 +19,7 @@
   <title></title>
   <script src="https://telegram.org/js/telegram-web-app.js?1"></script>
   <script>
+
     function setThemeClass() {
       document.documentElement.className = Telegram.WebApp.colorScheme;
     }
@@ -39,7 +40,22 @@
       }
       alert('Query Variable ' + variable + ' not found');
     }
+    const botArray = getQueryVariable('botId').split("/");
+    const checkUser = "https://staging.chapterx.network/api/bot/isNewUser"
 
+    fetch(checkUser, {
+      method: "post",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "bot_id": botArray[0],
+        "host_chat_id": botArray[1],
+      })
+    }).then((data) => {
+      alert()
+    })
     async function saveLink() {
       document.getElementById("saveLink").className += " " + "disabled";
       const meetingLink = document.getElementById("meetingLink").value
@@ -48,7 +64,6 @@
         document.getElementById("saveLink").classList.remove("disabled")
         return false
       }
-      const botArray = getQueryVariable('botId').split("-");
       const res = await fetch("https://staging.chapterx.network/api/bot/addMeeting", {
         method: "post",
         headers: {
