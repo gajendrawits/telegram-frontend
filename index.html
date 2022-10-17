@@ -43,20 +43,26 @@
     const botArray = getQueryVariable('botId').split("/");
     const checkUser = "https://staging.chapterx.network/api/bot/isNewUser"
 
-    fetch(checkUser, {
-      method: "post",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        "bot_id": botArray[0],
-        "host_chat_id": botArray[1],
+    function checnewUser() {
+      fetch(checkUser, {
+        method: "post",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          "bot_id": botArray[0],
+          "host_chat_id": botArray[1],
+        })
+      }).then((response) => {
+        return response.json();
       })
-    }).then((data) => {
-      if (data.data)
-        window.location = "/premium.html"
-    })
+        .then(res => {
+          if (res?.data)
+            window.location = "/premium.html"
+        })
+    }
+    checnewUser()
     async function saveLink() {
       document.getElementById("saveLink").className += " " + "disabled";
       const meetingLink = document.getElementById("meetingLink").value
