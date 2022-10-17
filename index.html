@@ -54,7 +54,8 @@
         "host_chat_id": botArray[1],
       })
     }).then((data) => {
-      alert()
+      if (data.data)
+        window.location = "/premium.html"
     })
     async function saveLink() {
       document.getElementById("saveLink").className += " " + "disabled";
@@ -130,4 +131,5 @@
   document.querySelector('#locationData').innerHTML = window.location.toString()
 
 </script>
+
 </html>
