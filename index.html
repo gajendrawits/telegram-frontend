@@ -71,8 +71,10 @@
             'Content-Type': 'application/json'
           },
         })
+          .then(() => {
+            webviewClose()
+          })
       }
-      console.log({ res })
       // .then((response) => {
       //     if (response.status === 200) {
       //         fetch("https://api.telegram.org/bot5656598831:AAFJhMPZtvBlCmSgiZbDw_NiyCJA9g0uoBM/sendMessage?chat_id=1135390370&text=hello%20world", {
@@ -96,7 +98,7 @@
 <body>
   <section class="d-flex justify-content-center " style="height: 100vh; width: 100%">
     <div class="mb-3 mt-3 p-2 d-flex flex-column" style="width:100%">
-      <span id="locationData"></span>
+      <!-- <span id="locationData"></span> -->
 
       <label for="text" class="form-label my-2">Meeting Link</label>
       <input type="text" name="text" class="form-control" placeholder="Eg: meet.google.com/zrs-kydu-dvh">
