@@ -40,7 +40,7 @@
       alert('Query Variable ' + variable + ' not found');
     }
 
-    async function saveLink() {
+    function saveLink() {
       document.getElementById("saveLink").className += " " + "disabled";
       const meetingLink = document.getElementById("meetingLink").value
       if (!meetingLink) {
@@ -48,7 +48,7 @@
         return false
       }
       const botArray = getQueryVariable('botId').split("-");
-      const res = await fetch("https://staging.chapterx.network/api/bot/addMeeting", {
+      const res = fetch("https://staging.chapterx.network/api/bot/addMeeting", {
         method: "post",
         headers: {
           'Accept': 'application/json',
@@ -93,8 +93,8 @@
     <div class="mb-3 mt-3 p-2 d-flex flex-column" style="width:100%">
       <!-- <span id="locationData"></span> -->
       <!-- <form action="#" class=""> -->
-      <label for=" text" class="form-label my-2">Meeting Link</label>
-      <input type="text" name="text" id="meetingLink" class="form-control"
+      <p for=" text" class="form-label my-2 font-weight-bold">Meeting Link</p>
+      <input type="text" name="text" id="meetingLink" class="form-control "
         placeholder="Eg: meet.google.com/zrs-kydu-dvh">
       <div class="text-center">
         <button type="submit" class="btn  btn-lg text-white my-4 " id="saveLink"
