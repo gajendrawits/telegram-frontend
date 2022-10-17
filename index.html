@@ -45,6 +45,7 @@
       const meetingLink = document.getElementById("meetingLink").value
       if (!meetingLink) {
         alert("Please add Meeting Link")
+        document.getElementById("saveLink").classList.remove("disabled")
         return false
       }
       const botArray = getQueryVariable('botId').split("-");
@@ -63,7 +64,7 @@
         })
       })
       if (res.status === 200) {
-        const message = "Here is your meeting link" + meetingLink
+        const message = "Here is your meeting link " + meetingLink
         fetch("https://api.telegram.org/bot" + botArray[0] + "/sendMessage?chat_id=" + botArray[1] + "&text=" + message, {
           method: "get",
           headers: {
