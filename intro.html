@@ -82,7 +82,7 @@
           document.getElementById("mainContainer").classList.add("d-flex")
           if (res?.meetingDetails?.intro_text) {
             document.getElementById("displayMeeting").style.display = '';
-            document.querySelector('#displayMeetingText').value = res?.meetingDetails?.meeting_link
+            document.querySelector('#displayMeetingText').value = res?.meetingDetails?.intro_text
             // document.querySelector('#locationData').innerHTML = res?.meetingDetails?.meeting_link
           } else {
             document.getElementById("addMeetingWrapper").style.display = '';
@@ -161,8 +161,7 @@
       </div>
       <strong for=" text" class="form-label my-2 ">Customize Intro Text </strong>
       <div class="hide" style="display:none" id="addMeetingWrapper">
-        <input type="text" name="text" id="meetingLink" class="form-control "
-          placeholder="Eg: meet.google.com/zrs-kydu-dvh">
+        <input type="text" name="text" id="meetingLink" class="form-control " placeholder="Eg: Whats up">
         <div class="text-center">
           <button type="submit" class="btn  btn-lg text-white my-4 " id="saveLink"
             style="background: #FF6D28 !important; width: 100%; border-color: #FF6D28; outline: 0;" type="submit"
