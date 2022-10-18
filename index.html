@@ -72,6 +72,11 @@
         return response.json();
       })
         .then(res => {
+          alert(res.data)
+          if (res?.data) {
+            window.location = "https://gajendrawits.github.io/telegram-frontend/premium.html"
+            return
+          }
           document.getElementById("mainContainer").classList.add("d-flex")
           if (res?.meetingDetails?.meeting_link) {
             document.getElementById("displayMeeting").style.display = '';
@@ -80,8 +85,7 @@
           } else {
             document.getElementById("addMeetingWrapper").style.display = '';
           }
-          if (res?.data)
-            window.location = "https://gajendrawits.github.io/telegram-frontend/premium.html"
+
         })
     }
     checnewUser()
