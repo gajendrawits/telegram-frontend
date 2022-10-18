@@ -40,6 +40,122 @@
 
             return false;
         }
+        function getQueryVariable(variable) {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split("=");
+                if (pair[0] == variable) {
+                    return pair[1];
+                }
+            }
+            alert('Query Variable ' + variable + ' not found');
+        }
+        // document.querySelector('#locationData').innerHTML = getQueryVariable('botId')
+        const botArray = getQueryVariable('botId').split("/");
+
+        const checkUser = "https://staging.chapterx.network/api/bot/isNewUser"
+
+        function checnewUser() {
+            fetch(checkUser, {
+                method: "post",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "bot_id": botArray[0],
+                    "host_chat_id": botArray[1],
+                    "receiver_chat_id": botArray[2],
+                })
+            }).then((response) => {
+                return response.json();
+            })
+                .then(res => {
+                    // alert(res.data)
+                    if (!res?.data) {
+                        document.getElementById("premiumDiv").style.display = '';
+
+                        // window.location = "https://gajendrawits.github.io/telegram-frontend/premium.html"
+                        return
+                    }
+                    document.getElementById("mainContainer").classList.add("d-flex")
+                    if (res?.meetingDetails?.intro_text) {
+                        document.getElementById("displayMeeting").style.display = '';
+                        document.querySelector('#displayMeetingText').value = res?.meetingDetails?.intro_text
+                        // document.querySelector('#locationData').innerHTML = res?.meetingDetails?.meeting_link
+                    } else {
+                        document.getElementById("addMeetingWrapper").style.display = '';
+                    }
+
+                })
+        }
+        checnewUser()
+        function signUp() {
+            window.location = "https://staging.chapterx.network/"
+        }
+        async function saveLink() {
+            document.getElementById("saveLink").className += " " + "disabled";
+            const meetingLink = document.getElementById("meetingLink").value
+            const dateTime = document.getElementById("dateTime").value
+            const currentTime = new Date().getTime();
+            const remindTime = new Date(dateTime).getTime();
+            if (!meetingLink) {
+                alert("Please add Intro text")
+                document.getElementById("saveLink").classList.remove("disabled")
+                return false
+            }
+            if ((remindTime - currentTime) < 0) {
+                alert("Please add remind time greater than current time")
+                document.getElementById("saveLink").classList.remove("disabled")
+                return
+            }
+
+            const res = await fetch("https://staging.chapterx.network/api/bot/addNotesReminder", {
+                method: "post",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                //make sure to serialize your JSON body
+                body: JSON.stringify({
+                    "bot_id": botArray[0],
+                    "host_chat_id": botArray[1],
+                    "type": "reminder",
+                    "text": "meetingLink",
+                    "count_down": (remindTime - currentTime)
+                })
+            })
+            if (res.status === 200) {
+                navigator.clipboard.writeText(meetingLink)
+                    .then(() => {
+                        alert("Intro text saved successfully. Link copied in clipboard")
+                    })
+                    .catch(err => {
+                        // alert('Error in copying text: ', err);
+                    });
+
+                const message = "Here is your intro text " + meetingLink
+                // fetch("https://api.telegram.org/bot" + botArray[0] + "/sendMessage?chat_id=" + botArray[1] + "&text=" + message, {
+                //     method: "get",
+                //     headers: {
+                //         'Accept': 'application/json',
+                //         'Content-Type': 'application/json'
+                //     },
+                // })
+                fetch("https://api.telegram.org/bot" + botArray[0] + "/sendMessage?chat_id=" + botArray[2] + "&text=" + message, {
+                    method: "get",
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                }).then(() => {
+                    webviewClose()
+                })
+            }
+
+        }
+
     </script>
 
 </head>
@@ -52,13 +168,13 @@
                 <img style="height: 40px; width: 40px;" src="./chapterx.png" alt="ChapterX">
             </div>
             <label for="text" class="form-label my-2">What should i remind you about?</label>
-            <input type="text" name="text" class="form-control" placeholder="Enter here...">
+            <input type="text" name="text" class="form-control" id="meetingLink" placeholder="Enter here...">
             <label for="date_time" class="form-label my-2">Enter reminder time</label>
             <input type="datetime-local" name="date_time" id="dateTime" class="form-control" id="birthdaytime"
                 name="birthdaytime">
-            <button class="btn btn-success my-4"
+            <button id="saveLink" class="btn btn-success my-4"
                 style="background: #FF6D28 !important; width: 100%; border-color: #FF6D28; outline: 0;" ` type="submit"
-                onClick="requestLocation()">Save</button>
+                onClick="saveLink()">Save</button>
         </div>
     </section>
 </body>
