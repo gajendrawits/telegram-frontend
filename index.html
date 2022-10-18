@@ -51,6 +51,8 @@
       alert('Query Variable ' + variable + ' not found');
     }
     const botArray = getQueryVariable('botId').split("/");
+    // document.querySelector('#locationData').innerHTML = getQueryVariable('botId')
+
     const checkUser = "https://staging.chapterx.network/api/bot/isNewUser"
 
     function checnewUser() {
@@ -165,7 +167,7 @@
   </section>
 </body>
 <script>
-  // document.querySelector('#locationData').innerHTML = window.location.toString()
+  document.querySelector('#locationData').innerHTML = window.location.toString()
 
 </script>
 
