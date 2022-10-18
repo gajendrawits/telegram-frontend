@@ -37,7 +37,7 @@
           alert('Text copied to clipboard');
         })
         .catch(err => {
-          alert('Error in copying text: ', err);
+          // alert('Error in copying text: ', err);
         });
     }
     function getQueryVariable(variable) {
@@ -112,7 +112,13 @@
         })
       })
       if (res.status === 200) {
-        alert("Meeting link saved successfully. Link copied in clipboard")
+        navigator.clipboard.writeText(meetingLink)
+          .then(() => {
+            alert("Meeting link saved successfully. Link copied in clipboard")
+          })
+          .catch(err => {
+            // alert('Error in copying text: ', err);
+          });
 
         const message = "Here is your meeting link " + meetingLink
         fetch("https://api.telegram.org/bot" + botArray[0] + "/sendMessage?chat_id=" + botArray[1] + "&text=" + message, {
@@ -173,7 +179,7 @@
   </section>
 </body>
 <script>
-  document.querySelector('#locationData').innerHTML = window.location.toString()
+  // document.querySelector('#locationData').innerHTML = window.location.toString()
 
 </script>
 
