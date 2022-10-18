@@ -73,7 +73,7 @@
       })
         .then(res => {
           alert(res.data)
-          if (res?.data) {
+          if (!res?.data) {
             window.location = "https://gajendrawits.github.io/telegram-frontend/premium.html"
             return
           }
