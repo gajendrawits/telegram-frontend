@@ -31,6 +31,7 @@
     }
     function copyText() {
       let text = document.getElementById("displayMeetingText").value;
+      alert(text)
       navigator.clipboard.writeText(text)
         .then(() => {
           alert('Text copied to clipboard');
@@ -65,6 +66,7 @@
         body: JSON.stringify({
           "bot_id": botArray[0],
           "host_chat_id": botArray[1],
+          "receiver_chat_id": botArray[2],
         })
       }).then((response) => {
         return response.json();
