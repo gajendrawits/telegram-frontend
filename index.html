@@ -31,7 +31,7 @@
     }
     function copyText() {
       let text = document.getElementById("displayMeetingText").value;
-      alert(text)
+      // alert(text)
       navigator.clipboard.writeText(text)
         .then(() => {
           alert('Text copied to clipboard');
