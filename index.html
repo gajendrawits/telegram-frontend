@@ -91,6 +91,9 @@
         })
     }
     checnewUser()
+    function signUp() {
+      window.location = "https://staging.chapterx.network/"
+    }
     async function saveLink() {
       document.getElementById("saveLink").className += " " + "disabled";
       const meetingLink = document.getElementById("meetingLink").value
@@ -112,9 +115,7 @@
           "meeting_link": meetingLink
         })
       })
-      function signUp() {
-        window.location = "https://staging.chapterx.network/"
-      }
+
       if (res.status === 200) {
         navigator.clipboard.writeText(meetingLink)
           .then(() => {
