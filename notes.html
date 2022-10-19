@@ -121,13 +121,7 @@
                 })
             })
             if (res.status === 200) {
-                navigator.clipboard.writeText(meetingLink)
-                    .then(() => {
-                        alert("Intro text saved successfully. Link copied in clipboard")
-                    })
-                    .catch(err => {
-                        // alert('Error in copying text: ', err);
-                    });
+
                 const frontEndUrl = "https://gajendrawits.github.io/telegram-frontend"
                 const message = "Your reminder is saved successfully."
 
@@ -144,7 +138,7 @@
                             {
                                 "text": "​​⏰ Add More",
                                 "web_app": {
-                                    "url": frontEndUrl + "/reminder.html?botId=" + botArray[0] + "/" + botArray[1] + "/" + botArray[2]
+                                    "url": frontEndUrl + "/notes.html?botId=" + botArray[0] + "/" + botArray[1] + "/" + botArray[2]
                                 },
                             },
 
@@ -175,7 +169,7 @@
 
 <body>
     <img style="width: 20px; height: 20px; margin: 10px 5px;" src="./exit.png" alt="back" onclick="webviewClose()">
-    <section class="d-flex justify-content-center" style="height: 100vh; width:100%">
+    <section class="justify-content-center" style="height: 100vh; width:100%">
         <div class="mb-3 px-2 d-flex flex-column mt-3" style="width:100%;display:none;" id="mainContainer">
             <div class="text-center">
                 <img style="height: 40px; width: 40px;" src="./chapterx.png" alt="ChapterX">

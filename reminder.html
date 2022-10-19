@@ -127,13 +127,7 @@
                 })
             })
             if (res.status === 200) {
-                navigator.clipboard.writeText(meetingLink)
-                    .then(() => {
-                        alert("Intro text saved successfully. Link copied in clipboard")
-                    })
-                    .catch(err => {
-                        // alert('Error in copying text: ', err);
-                    });
+
                 const frontEndUrl = "https://gajendrawits.github.io/telegram-frontend"
                 const message = "Your reminder is saved successfully."
 
