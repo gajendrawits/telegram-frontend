@@ -97,19 +97,13 @@
         async function saveLink() {
             document.getElementById("saveLink").className += " " + "disabled";
             const meetingLink = document.getElementById("meetingLink").value
-            const dateTime = document.getElementById("dateTime").value
-            const currentTime = new Date().getTime();
-            const remindTime = new Date(dateTime).getTime();
+
             if (!meetingLink) {
                 alert("Please add Intro text")
                 document.getElementById("saveLink").classList.remove("disabled")
                 return false
             }
-            if ((remindTime - currentTime) < 0) {
-                alert("Please add remind time greater than current time")
-                document.getElementById("saveLink").classList.remove("disabled")
-                return
-            }
+
 
             const res = await fetch("https://staging.chapterx.network/api/bot/addNotesReminder", {
                 method: "post",
@@ -121,9 +115,9 @@
                 body: JSON.stringify({
                     "bot_id": botArray[0],
                     "host_chat_id": botArray[1],
-                    "type": "reminder",
+                    "type": "note",
                     "text": meetingLink,
-                    "count_down": (remindTime - currentTime)
+                    // "count_down": (remindTime - currentTime)
                 })
             })
             if (res.status === 200) {
@@ -154,7 +148,7 @@
                                 },
                             },
 
-                            { "text": "🗒️​ See All", "callback_data": "see_all_reminder" },
+                            { "text": "🗒️​ See All", "callback_data": "see_all_note" },
                         ],
                     ]
 
@@ -186,14 +180,12 @@
             <div class="text-center">
                 <img style="height: 40px; width: 40px;" src="./chapterx.png" alt="ChapterX">
             </div>
-            <label for="text" class="form-label my-2">What should i remind you about?</label>
-            <input type="text" name="text" class="form-control" id="meetingLink" placeholder="Enter here...">
-            <label for="date_time" class="form-label my-2">Enter reminder time</label>
-            <input type="datetime-local" name="date_time" id="dateTime" class="form-control" id="birthdaytime"
-                name="birthdaytime">
+            <label for="text" class="form-label my-2">Write you note here ?</label>
+            <input type="text" name="text" class="form-control" id="meetingLink" placeholder="Eg. Tomorrow is holiday.">
+
             <button id="saveLink" class="btn btn-success my-4"
                 style="background: #FF6D28 !important; width: 100%; border-color: #FF6D28; outline: 0;" ` type="submit"
-                onClick="saveLink()">Save</button>
+                onClick="saveLink()">Save Note </button>
         </div>
     </section>
     <div id="premiumDiv" style="display: none;">
