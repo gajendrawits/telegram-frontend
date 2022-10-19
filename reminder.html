@@ -139,7 +139,7 @@
 
                 // fetch("https://api.telegram.org/bot" + botArray[0] + "/sendMessage?chat_id=" + botArray[1] + "&text=" + message, {
                 //     method: "get",
-                //     headers: {
+                //     headers: {   
                 //         'Accept': 'application/json',
                 //         'Content-Type': 'application/json'
                 //     },
@@ -148,7 +148,7 @@
                     "inline_keyboard": [
                         [
                             {
-                                "text": "👋​ Add New",
+                                "text": "​​⏰ Add More",
                                 "web_app": {
                                     "url": frontEndUrl + "/reminder.html?botId=" + botArray[0] + "/" + botArray[1] + "/" + botArray[2]
                                 },
@@ -182,7 +182,7 @@
 <body>
     <img style="width: 20px; height: 20px; margin: 10px 5px;" src="./exit.png" alt="back" onclick="webviewClose()">
     <section class="d-flex justify-content-center" style="height: 100vh; width:100%">
-        <div class="mb-3 px-2 d-flex flex-column mt-3" style="width:100%">
+        <div class="mb-3 px-2 d-flex flex-column mt-3" style="width:100%;display:none;" id="mainContainer">
             <div class="text-center">
                 <img style="height: 40px; width: 40px;" src="./chapterx.png" alt="ChapterX">
             </div>
@@ -196,6 +196,20 @@
                 onClick="saveLink()">Save</button>
         </div>
     </section>
+    <div id="premiumDiv" style="display: none;">
+        <!-- <img style="width: 20px; height: 20px; margin: 10px 5px;" src="./exit.png" alt="back" onclick="webviewClose()"> -->
+        <section class="d-flex justify-content-center text-center" style="height: 100vh; width:100%">
+            <div class="mb-3 px-2 d-flex flex-column mt-3" style="width:100%">
+                <div class="text-center">
+                    <img style="height: 40px; width: 40px;" src="./chapterx.png" alt="ChapterX">
+                </div>
+                <p class="mt-2">Sign-up for an account to unlock premium 💎 features!</p>
+                <button type="submit" class="btn  btn-lg text-white my-4 " id="saveLink"
+                    style="background: #FF6D28 !important; width: 100%; border-color: #FF6D28; outline: 0;"
+                    type="submit" onClick="signUp()">Sign Up</button>
+            </div>
+        </section>
+    </div>
 </body>
 
 </html>
