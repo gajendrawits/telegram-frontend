@@ -95,9 +95,8 @@
       window.location = "https://staging.chapterx.network/"
     }
     function changeText(params) {
-      document.getElementById("displayMeeting").style.display = 'block';
-      document.getElementById("addMeetingWrapper").classList.add("d-flex")
-
+      document.getElementById("addMeetingWrapper").style.display = 'block';
+      document.getElementById("displayMeeting").style.display = 'none';
     }
     async function saveLink() {
       document.getElementById("saveLink").className += " " + "disabled";
