@@ -94,6 +94,12 @@
     function signUp() {
       window.location = "https://staging.chapterx.network/"
     }
+    function changeText(params) {
+
+      document.getElementById("addMeetingWrapper").classList.add("d-flex")
+      document.getElementById("displayMeeting").classList.remove("d-flex")
+
+    }
     async function saveLink() {
       document.getElementById("saveLink").className += " " + "disabled";
       const meetingLink = document.getElementById("meetingLink").value
@@ -175,6 +181,9 @@
           <button type="submit" class="btn  btn-lg text-white my-4 " id="saveLink"
             style="background: #FF6D28 !important; width: 100%; border-color: #FF6D28; outline: 0;" type="submit"
             onClick="copyText()">Copy Intro Text</button>
+          <button type="submit" class="btn  btn-lg text-white my-4 " id="saveLink"
+            style="background: #FF6D28 !important; width: 100%; border-color: #FF6D28; outline: 0;" type="submit"
+            onClick="changeText()">Chnage Intro Text</button>
         </div>
       </div>
       <!-- </form> -->
