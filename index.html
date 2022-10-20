@@ -135,7 +135,7 @@
             // alert('Error in copying text: ', err);
           });
 
-        const message = "Here is your meeting link " + meetingLink
+        const message = "Here is your meeting link: " + meetingLink
         fetch("https://api.telegram.org/bot" + botArray[0] + "/sendMessage?chat_id=" + botArray[1] + "&text=" + message, {
           method: "get",
           headers: {
