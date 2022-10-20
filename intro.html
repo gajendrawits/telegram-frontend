@@ -99,6 +99,7 @@
     function changeText(params) {
       document.getElementById("addMeetingWrapper").style.display = 'block';
       document.getElementById("displayMeeting").style.display = 'none';
+      document.getElementById("meetingLink").value = document.querySelector('#displayMeetingText').value
     }
     function cancelLink(params) {
       document.getElementById("addMeetingWrapper").style.display = 'none';
