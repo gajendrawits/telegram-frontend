@@ -132,15 +132,15 @@
             'Content-Type': 'application/json'
           },
         })
-        fetch("https://api.telegram.org/bot" + botArray[0] + "/sendMessage?chat_id=" + botArray[2] + "&text=" + message, {
-          method: "get",
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-        }).then(() => {
-          webviewClose()
-        })
+        // fetch("https://api.telegram.org/bot" + botArray[0] + "/sendMessage?chat_id=" + botArray[2] + "&text=" + message, {
+        //   method: "get",
+        //   headers: {
+        //     'Accept': 'application/json',
+        //     'Content-Type': 'application/json'
+        //   },
+        // }).then(() => {
+        //   webviewClose()
+        // })
       }
 
     }
