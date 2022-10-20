@@ -81,7 +81,7 @@
           }
           document.getElementById("mainContainer").classList.add("d-flex")
           if (res?.meetingDetails?.intro_text) {
-            document.getElementById("displayMeeting").classList.add("d-flex")
+            document.getElementById("displayMeeting").style.display = '';
             document.querySelector('#displayMeetingText').value = res?.meetingDetails?.intro_text
             // document.querySelector('#locationData').innerHTML = res?.meetingDetails?.meeting_link
           } else {
@@ -95,9 +95,8 @@
       window.location = "https://staging.chapterx.network/"
     }
     function changeText(params) {
-
+      document.getElementById("displayMeeting").style.display = 'block';
       document.getElementById("addMeetingWrapper").classList.add("d-flex")
-      document.getElementById("displayMeeting").classList.remove("d-flex")
 
     }
     async function saveLink() {
