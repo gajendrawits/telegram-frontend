@@ -98,6 +98,10 @@
       document.getElementById("addMeetingWrapper").style.display = 'block';
       document.getElementById("displayMeeting").style.display = 'none';
     }
+    function cancelLink(params) {
+      document.getElementById("addMeetingWrapper").style.display = 'none';
+      document.getElementById("displayMeeting").style.display = 'block';
+    }
     async function saveLink() {
       document.getElementById("saveLink").className += " " + "disabled";
       const meetingLink = document.getElementById("meetingLink").value
@@ -170,6 +174,9 @@
           <button type="submit" class="btn  btn-lg text-white my-4 " id="saveLink"
             style="background: #FF6D28 !important; width: 100%; border-color: #FF6D28; outline: 0;" type="submit"
             onClick="saveLink()">Save Intro Text</button>
+          <button type="submit" class="btn  btn-lg text-white my-4 " id="saveLink"
+            style="background: #FF6D28 !important; width: 100%; border-color: #FF6D28; outline: 0;" type="submit"
+            onClick="cancelLink()">Cancel</button>
         </div>
       </div>
       <div class="hide" id="displayMeeting" style="display: none;">
