@@ -29,6 +29,11 @@
     function webviewClose() {
       Telegram.WebApp.close();
     }
+    function changeText(params) {
+      document.getElementById("addMeetingWrapper").style.display = 'block';
+      document.getElementById("displayMeeting").style.display = 'none';
+      document.getElementById("meetingLink").value = document.querySelector('#displayMeetingText').value
+    }
     function copyText() {
       let text = document.getElementById("displayMeetingText").value;
       // alert(text)
@@ -177,9 +182,13 @@
           <button type="submit" class="btn  btn-lg text-white my-4 " id="saveLink"
             style="background: #FF6D28 !important; width: 100%; border-color: #FF6D28; outline: 0;" type="submit"
             onClick="copyText()">Copy Link</button>
+          <button type="submit" class="btn btn-success my-4 " id="saveLink"
+            style="background: #FF6D28 !important; width: 100%; border-color: #FF6D28; outline: 0;" type="submit"
+            onClick="changeText()">Change Intro Text</button>
         </div>
       </div>
-      <!-- </form> -->
+    </div>
+    <!-- </form> -->
     </div>
     <div id="premiumDiv" style="display: none;">
       <!-- <img style="width: 20px; height: 20px; margin: 10px 5px;" src="./exit.png" alt="back" onclick="webviewClose()"> -->
