@@ -99,6 +99,10 @@
     function signUp() {
       window.location = "https://staging.chapterx.network/"
     }
+    function cancelLink(params) {
+      document.getElementById("addMeetingWrapper").style.display = 'none';
+      document.getElementById("displayMeeting").style.display = 'block';
+    }
     async function saveLink() {
       document.getElementById("saveLink").className += " " + "disabled";
       const meetingLink = document.getElementById("meetingLink").value
@@ -170,7 +174,7 @@
         <input type="text" name="text" id="meetingLink" class="form-control "
           placeholder="Eg: meet.google.com/zrs-kydu-dvh">
         <div class="text-center">
-          <button type="submit" class="btn  btn-lg text-white my-4 " id="saveLink"
+          <button type="submit" class="btn btn-success my-4 " id="saveLink"
             style="background: #FF6D28 !important; width: 100%; border-color: #FF6D28; outline: 0;" type="submit"
             onClick="saveLink()">Save Link</button>
           <button type="submit" class="btn btn-success " id="saveLink"
