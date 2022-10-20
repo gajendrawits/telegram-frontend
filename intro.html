@@ -81,7 +81,7 @@
           }
           document.getElementById("mainContainer").classList.add("d-flex")
           if (res?.meetingDetails?.intro_text) {
-            document.getElementById("displayMeeting").style.display = '';
+            document.getElementById("displayMeeting").classList.add("d-flex")
             document.querySelector('#displayMeetingText').value = res?.meetingDetails?.intro_text
             // document.querySelector('#locationData').innerHTML = res?.meetingDetails?.meeting_link
           } else {
