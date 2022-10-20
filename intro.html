@@ -83,6 +83,8 @@
           if (res?.meetingDetails?.intro_text) {
             document.getElementById("displayMeeting").style.display = '';
             document.querySelector('#displayMeetingText').value = res?.meetingDetails?.intro_text
+            document.getElementById("meetingLink").value = res?.meetingDetails?.intro_text
+
             // document.querySelector('#locationData').innerHTML = res?.meetingDetails?.meeting_link
           } else {
             document.getElementById("addMeetingWrapper").style.display = '';
