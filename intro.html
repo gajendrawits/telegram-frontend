@@ -55,7 +55,7 @@
     const botArray = getQueryVariable('botId').split("/");
     // document.querySelector('#locationData').innerHTML = getQueryVariable('botId')
 
-    const checkUser = "https://staging.chapterx.network/api/bot/isNewUser"
+    const checkUser = "https://chapterx.network/api/bot/isNewUser"
 
     function checnewUser() {
       fetch(checkUser, {
@@ -75,7 +75,7 @@
       })
         .then(res => {
           // alert(res.data)
-          document.querySelector('#locationData').innerHTML = JSON.stringify(res?.data)
+          // document.querySelector('#locationData').innerHTML = JSON.stringify(res?.data)
 
           if (!res?.data) {
             document.getElementById("premiumDiv").style.display = '';
