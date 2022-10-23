@@ -19,10 +19,7 @@
   <title></title>
   <script src="https://telegram.org/js/telegram-web-app.js?1"></script>
   <script>
-    Telegram.WebApp.ready();
 
-    const initData = Telegram.WebApp.initData || '';
-    const initDataUnsafe = Telegram.WebApp.initDataUnsafe || {};
     document.querySelector('#locationData').innerHTML = initDataUnsafe.user.username;
     function setThemeClass() {
       document.documentElement.className = Telegram.WebApp.colorScheme;
@@ -97,7 +94,6 @@
 
         })
     }
-    checnewUser()
     function signUp() {
       window.location = "https://chapterx.network/"
     }
@@ -222,10 +218,11 @@
 <script>
   Telegram.WebApp.ready();
 
-  // const initData = Telegram.WebApp.initData || '';
-  // const initDataUnsafe = Telegram.WebApp.initDataUnsafe || {};
-  // document.querySelector('#locationData').innerHTML = initDataUnsafe.user.username;
-  // document.querySelector('#locationData').innerHTML = window.location.toString()
+  const initData = Telegram.WebApp.initData || '';
+  const initDataUnsafe = Telegram.WebApp.initDataUnsafe || {};
+  document.querySelector('#locationData').innerHTML = initDataUnsafe.user.username;
+  document.querySelector('#locationData').innerHTML = window.location.toString()
+      checnewUser()
 
 </script>
 
