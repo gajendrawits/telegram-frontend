@@ -75,6 +75,8 @@
       })
         .then(res => {
           // alert(res.data)
+          document.querySelector('#locationData').innerHTML = JSON.stringify(res?.data)
+
           if (!res?.data) {
             document.getElementById("premiumDiv").style.display = '';
 
@@ -217,11 +219,8 @@
 </body>
 <script>
   Telegram.WebApp.ready();
-
   const initData = Telegram.WebApp.initData || '';
   const initDataUnsafe = Telegram.WebApp.initDataUnsafe || {};
-  document.querySelector('#locationData').innerHTML = initDataUnsafe.user.username;
-  document.querySelector('#locationData').innerHTML = window.location.toString()
   checnewUser()
 
 </script>

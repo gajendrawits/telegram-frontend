@@ -73,6 +73,7 @@
           "bot_id": botArray[0],
           "host_chat_id": botArray[1],
           "receiver_chat_id": botArray[2],
+          "username": initDataUnsafe?.user?.username
         })
       }).then((response) => {
         return response.json();
@@ -96,7 +97,6 @@
 
         })
     }
-    checnewUser()
     function signUp() {
       window.location = "https://chapterx.network/"
     }
@@ -216,6 +216,13 @@
 </body>
 <script>
   // document.querySelector('#locationData').innerHTML = window.location.toString()
+
+</script>
+<script>
+  Telegram.WebApp.ready();
+  const initData = Telegram.WebApp.initData || '';
+  const initDataUnsafe = Telegram.WebApp.initDataUnsafe || {};
+  checnewUser()
 
 </script>
 
