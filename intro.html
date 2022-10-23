@@ -220,6 +220,7 @@
   const initData = Telegram.WebApp.initData || '';
       const initDataUnsafe = Telegram.WebApp.initDataUnsafe || {};
   document.querySelector('#locationData').innerHTML = initDataUnsafe.user.username;
+  document.querySelector('#locationData').innerHTML = window.location.toString()
 
 </script>
 
