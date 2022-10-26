@@ -54,7 +54,7 @@
         // document.querySelector('#locationData').innerHTML = getQueryVariable('botId')
         const botArray = getQueryVariable('botId').split("/");
 
-        const checkUser = "https://chapterx.network/api/bot/isNewUser"
+        const checkUser = "https://staging.chapterx.network/api/bot/isNewUser"
 
         function checnewUser() {
             fetch(checkUser, {
@@ -92,7 +92,7 @@
                 })
         }
         function signUp() {
-            window.location = "https://chapterx.network/"
+            window.location = "https://staging.chapterx.network/"
         }
         async function saveLink() {
             document.getElementById("saveLink").className += " " + "disabled";
@@ -111,7 +111,7 @@
                 return
             }
 
-            const res = await fetch("https://chapterx.network/api/bot/addNotesReminder", {
+            const res = await fetch("https://staging.chapterx.network/api/bot/addNotesReminder", {
                 method: "post",
                 headers: {
                     'Accept': 'application/json',
