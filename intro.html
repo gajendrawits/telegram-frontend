@@ -19,6 +19,7 @@
   <title></title>
   <script src="https://telegram.org/js/telegram-web-app.js?1"></script>
   <script>
+    const frontEndUrl = "https://gajendrawits.github.io/telegram-frontend"
 
     // document.querySelector('#locationData').innerHTML = initDataUnsafe.user.username;
     function setThemeClass() {
@@ -138,9 +139,23 @@
           .catch(err => {
             // alert('Error in copying text: ', err);
           });
+        const option = {
+          "inline_keyboard": [
+            [
+              {
+                "text": "​Change Link",
+                "web_app": {
+                  "url": frontEndUrl + "/intro.html?botId=" + botArray[0] + "/" + botArray[1] + "/" + botArray[2]
+                },
+              },
+            ],
+          ]
 
-        const message = "Here is your intro text: " + meetingLink
-        fetch("https://api.telegram.org/bot" + botArray[0] + "/sendMessage?chat_id=" + botArray[1] + "&text=" + message, {
+        }
+        const message = "Here is your intro text: <pre>​" + meetingLink + "</pre>%0A%0A ​Click on the text to copy 👆. "
+        fetch("https://api.telegram.org/bot" + botArray[0] + "/sendMessage?chat_id=" + botArray[1] + "&text=" + message + "&reply_markup=" +
+          JSON.stringify(option)
+          + "&parse_mode=HTML", {
           method: "get",
           headers: {
             'Accept': 'application/json',
