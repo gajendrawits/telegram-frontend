@@ -19,6 +19,7 @@
   <title></title>
   <script src="https://telegram.org/js/telegram-web-app.js?1"></script>
   <script>
+    const frontEndUrl = "https://gajendrawits.github.io/telegram-frontend"
 
     function setThemeClass() {
       document.documentElement.className = Telegram.WebApp.colorScheme;
@@ -136,14 +137,22 @@
           });
 
         const message = "Here is your meeting link: " + meetingLink
-        fetch("https://api.telegram.org/bot" + botArray[0] + "/sendMessage?chat_id=" + botArray[1] + "&text=" + message, {
-          method: "get",
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-        })
-        fetch("https://api.telegram.org/bot" + botArray[0] + "/sendMessage?chat_id=" + botArray[2] + "&text=" + message, {
+        const option = {
+          "inline_keyboard": [
+            [
+              {
+                "text": "​Change Link",
+                "web_app": {
+                  "url": frontEndUrl + "/index.html?botId=" + botArray[0] + "/" + botArray[1] + "/" + botArray[2]
+                },
+              },
+            ],
+          ]
+
+        }
+        fetch("https://api.telegram.org/bot" + botArray[0] + "/sendMessage?chat_id=" + botArray[1] + "&text=" + message + "&reply_markup=" +
+          JSON.stringify(option)
+          + "&parse_mode=HTML", {
           method: "get",
           headers: {
             'Accept': 'application/json',
@@ -152,6 +161,7 @@
         }).then(() => {
           webviewClose()
         })
+
       }
 
     }
