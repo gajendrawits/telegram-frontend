@@ -55,7 +55,16 @@
         const botArray = getQueryVariable('botId').split("/");
 
         const checkUser = "https://staging.chapterx.network/api/bot/isNewUser"
-
+        function deleteNotes() {
+            var retVal = confirm("Do you want to delete?");
+            // prompt("Edit your note", "Hello world");
+            alert(retVal)
+        }
+        function deleteNotes() {
+            // var retVal = confirm("Do you want to delete?");
+            prompt("Edit your note", "Hello world");
+            // alert(retVal)
+        }
         function checnewUser() {
             fetch(checkUser, {
                 method: "post",
@@ -80,7 +89,7 @@
                     if (notes.length) {
 
                         notes.forEach(d => {
-                            innerData += `<li class="list-group-item">${d}<div class="text-right" style="text-align:right"><button type="button" class="btn btn-info">Edit</button><button type="button" class="btn btn-danger">Delete</button></div ></li>`.trim()
+                            innerData += `<li class="list-group-item">${d}<div class="text-right" style="text-align:right"><button type="button" class="btn btn-info">Edit</button><button type="button" onClick="deleteNotes()" class="btn btn-danger">Delete</button></div ></li>`.trim()
                         })
                     }
                     console.log(innerData)
@@ -94,13 +103,13 @@
                         return
                     }
                     document.getElementById("mainContainer").classList.add("d-flex")
-                    if (res?.meetingDetails?.intro_text) {
-                        document.getElementById("displayMeeting").style.display = '';
-                        document.querySelector('#displayMeetingText').value = res?.meetingDetails?.intro_text
-                        document.querySelector('#locationData').innerHTML = res?.meetingDetails?.meeting_link
-                    } else {
-                        document.getElementById("addMeetingWrapper").style.display = '';
-                    }
+                    // if (res?.meetingDetails?.intro_text) {
+                    //     document.getElementById("displayMeeting").style.display = '';
+                    //     document.querySelector('#displayMeetingText').value = res?.meetingDetails?.intro_text
+                    //     document.querySelector('#locationData').innerHTML = res?.meetingDetails?.meeting_link
+                    // } else {
+                    //     document.getElementById("addMeetingWrapper").style.display = '';
+                    // }
 
                 })
         }
