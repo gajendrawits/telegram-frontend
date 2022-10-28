@@ -86,7 +86,7 @@
           }
           document.getElementById("mainContainer").classList.add("d-flex")
           if (res?.meetingDetails?.intro_text) {
-            document.querySelector('#displayMeetingText').value = res?.meetingDetails?.intro_text
+            // document.querySelector('#displayMeetingText').value = res?.meetingDetails?.intro_text
             document.getElementById("meetingLink").value = res?.meetingDetails?.intro_text
 
             // document.querySelector('#locationData').innerHTML = res?.meetingDetails?.meeting_link
@@ -140,7 +140,7 @@
           "inline_keyboard": [
             [
               {
-                "text": "​Change Link",
+                "text": "​Change Intro Text",
                 "web_app": {
                   "url": frontEndUrl + "/intro.html?botId=" + botArray[0] + "/" + botArray[1] + "/" + botArray[2]
                 },
@@ -149,7 +149,7 @@
           ]
 
         }
-        const message = "Here is your intro text: <code>​" + meetingLink + "</code>%0A%0A ​Click on the text to copy 👆. "
+        const message = "<code>​" + meetingLink + "</code>%0A​Click on the text to copy 👆. "
         fetch("https://api.telegram.org/bot" + botArray[0] + "/sendMessage?chat_id=" + botArray[1] + "&text=" + message + "&reply_markup=" +
           JSON.stringify(option)
           + "&parse_mode=HTML", {
@@ -193,7 +193,7 @@
         <div class="text-center">
           <button type="submit" class="btn btn-success my-4 " id="saveLink"
             style="background: #FF6D28 !important; width: 100%; border-color: #FF6D28; outline: 0;" type="submit"
-            onClick="saveLink()">Save Intro Text</button>
+            onClick="saveLink()">Save</button>
           <button type="submit" class="btn btn-success " id="cancelButton"
             style="background: #FF6D28 !important; width: 100%; border-color: #FF6D28; outline: 0; display: none;"
             type="submit" onClick="cancelLink()">Cancel</button>
