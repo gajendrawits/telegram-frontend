@@ -33,20 +33,9 @@
     function changeText(params) {
       document.getElementById("cancelButton").style.display = 'block';
       document.getElementById("addMeetingWrapper").style.display = 'block';
-      document.getElementById("displayMeeting").style.display = 'none';
       document.getElementById("meetingLink").value = document.querySelector('#displayMeetingText').value
     }
-    function copyText() {
-      let text = document.getElementById("displayMeetingText").value;
-      // alert(text)
-      navigator.clipboard.writeText(text)
-        .then(() => {
-          alert('Text copied to clipboard');
-        })
-        .catch(err => {
-          // alert('Error in copying text: ', err);
-        });
-    }
+
     function getQueryVariable(variable) {
       var query = window.location.search.substring(1);
       var vars = query.split("&");
@@ -89,8 +78,7 @@
           }
           document.getElementById("mainContainer").classList.add("d-flex")
           if (res?.meetingDetails?.meeting_link) {
-            document.getElementById("displayMeeting").style.display = '';
-            document.querySelector('#displayMeetingText').value = res?.meetingDetails?.meeting_link
+            document.querySelector('#meetingLink').value = res?.meetingDetails?.meeting_link
             // document.querySelector('#locationData').innerHTML = res?.meetingDetails?.meeting_link
           } else {
             document.getElementById("addMeetingWrapper").style.display = '';
@@ -136,7 +124,7 @@
             // alert('Error in copying text: ', err);
           });
 
-        const message = "Here is your meeting link: <pre>​" + meetingLink + "</pre>%0A%0A ​Click on the text to copy 👆. "
+        const message = "<code>​" + meetingLink + "</pre>%0A%0A Click on Meeting Link to copy 👆. "
         const option = {
           "inline_keyboard": [
             [
@@ -181,30 +169,19 @@
         <img style="height: 40px; width: 40px;" src="./chapterx.png" alt="ChapterX">
       </div>
       <strong for=" text" class="form-label my-2 ">Meeting Link</strong>
-      <div class="hide" style="display:none" id="addMeetingWrapper">
+      <div class="hide" id="addMeetingWrapper">
         <input type="text" name="text" id="meetingLink" class="form-control "
           placeholder="Eg: meet.google.com/zrs-kydu-dvh">
         <div class="text-center">
           <button type="submit" class="btn btn-success my-4 " id="saveLink"
             style="background: #FF6D28 !important; width: 100%; border-color: #FF6D28; outline: 0;" type="submit"
-            onClick="saveLink()">Save Link </button>
+            onClick="saveLink()">Save </button>
           <button type="submit" class="btn btn-success " id="cancelButton"
             style="background: #FF6D28 !important; width: 100%; border-color: #FF6D28; outline: 0; display: none;"
             type="submit" onClick="cancelLink()">Cancel</button>
         </div>
       </div>
-      <div class="hide" id="displayMeeting" style="display: none;">
-        <input type="text" id="displayMeetingText" disabled name="text" id="meetingLink" class="form-control "
-          placeholder="Eg: meet.google.com/zrs-kydu-dvh">
-        <div class="text-center">
-          <button type="submit" class="btn btn-success my-4" id="saveLink"
-            style="background: #FF6D28 !important; width: 100%; border-color: #FF6D28; outline: 0;" type="submit"
-            onClick="copyText()">Copy Link</button>
-          <button type="submit" class="btn btn-success font-weight-bold" id="saveLink"
-            style="background: #FF6D28 !important; width: 100%; border-color: #FF6D28; outline: 0;" type="submit"
-            onClick="changeText()">Change Meeting Link</button>
-        </div>
-      </div>
+
     </div>
     <!-- </form> -->
     </div>
