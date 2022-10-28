@@ -55,16 +55,29 @@
         const botArray = getQueryVariable('botId').split("/");
 
         const checkUser = "https://staging.chapterx.network/api/bot/isNewUser"
-        function deleteNotes(param) {
-            var retVal = confirm("Do you want to delete?" + param);
+        function deleteNotes(id) {
+            var retVal = confirm("Do you want to delete?");
+            if (retVal) {
+                var myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+
+                var raw = JSON.stringify({
+                    id
+                });
+
+                var requestOptions = {
+                    method: 'POST',
+                    headers: myHeaders,
+                    body: raw,
+                    redirect: 'follow'
+                };
+
+                fetch("http://staging.chapterx.network/api/bot/removeNote", requestOptions)
+                    .then(response => response.text())
+                    .then(result => checnewUser())
+                    .catch(error => console.log('error', error));
+            }
             // prompt("Edit your note", "Hello world");
-            alert(retVal)
-        }
-        function editNotes(note, id) {
-            console.log(note)
-            // var retVal = confirm("Do you want to delete?");
-            prompt("Edit your note", note);
-            // alert(retVal)
         }
         function checnewUser() {
             fetch(checkUser, {
@@ -114,6 +127,33 @@
 
                 })
         }
+        function editNotes(note, id) {
+            console.log(note)
+            // var retVal = confirm("Do you want to delete?");
+            var value = prompt("Edit your note", note);
+            if (value !== note) {
+                var myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+
+                var raw = JSON.stringify({
+                    id,
+                    "text": value
+                });
+
+                var requestOptions = {
+                    method: 'POST',
+                    headers: myHeaders,
+                    body: raw,
+                    redirect: 'follow'
+                };
+
+                fetch("http://staging.chapterx.network/api/bot/editNote", requestOptions)
+                    .then(response => response.text())
+                    .then(result => checnewUser())
+                    .catch(error => console.log('error', error));
+            }
+        }
+
         function signUp() {
             window.location = "https://staging.chapterx.network/"
         }
