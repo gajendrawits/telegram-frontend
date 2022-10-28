@@ -73,6 +73,8 @@
                 return response.json();
             })
                 .then(res => {
+                    document.querySelector('#locationData').innerHTML = JSON.stringify(res)
+
                     // alert(res.data)
                     if (!res?.data) {
                         document.getElementById("premiumDiv").style.display = '';
@@ -84,7 +86,7 @@
                     if (res?.meetingDetails?.intro_text) {
                         document.getElementById("displayMeeting").style.display = '';
                         document.querySelector('#displayMeetingText').value = res?.meetingDetails?.intro_text
-                        // document.querySelector('#locationData').innerHTML = res?.meetingDetails?.meeting_link
+                        document.querySelector('#locationData').innerHTML = res?.meetingDetails?.meeting_link
                     } else {
                         document.getElementById("addMeetingWrapper").style.display = '';
                     }
