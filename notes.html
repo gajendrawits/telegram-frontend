@@ -185,44 +185,7 @@
                 })
             })
             if (res.status === 200) {
-
-                const frontEndUrl = "https://gajendrawits.github.io/telegram-frontend"
-                const message = "Note added successfully."
-
-                // fetch("https://api.telegram.org/bot" + botArray[0] + "/sendMessage?chat_id=" + botArray[1] + "&text=" + message, {
-                //     method: "get",
-                //     headers: {   
-                //         'Accept': 'application/json',
-                //         'Content-Type': 'application/json'
-                //     },
-                // })
-                const option = {
-                    "inline_keyboard": [
-                        [
-                            {
-                                "text": "​​⏰ Add More",
-                                "web_app": {
-                                    "url": frontEndUrl + "/notes.html?botId=" + botArray[0] + "/" + botArray[1] + "/" + botArray[2]
-                                },
-                            },
-
-                            { "text": "🗒️​ See All", "callback_data": "see_all_note" + botArray[2] },
-                        ],
-                    ]
-
-                }
-                fetch("https://api.telegram.org/bot" + botArray[0] + "/sendMessage?chat_id=" + botArray[1] + "&text=" + message
-                    + "&reply_markup=" +
-                    JSON.stringify(option)
-                    , {
-                        method: "get",
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        },
-                    }).then(() => {
-                        webviewClose()
-                    })
+                checnewUser
             }
 
         }
