@@ -74,6 +74,17 @@
             })
                 .then(res => {
                     // document.querySelector('#locationData').innerHTML = JSON.stringify(res)
+                    console.log(res?.notesAndReminder?.filter(d => d.type === "note")?.map(d => d.text))
+                    const notes = res?.notesAndReminder?.filter(d => d.type === "note")?.map(d => d.text);
+                    let innerData = ""
+                    if (notes.length) {
+
+                        notes.forEach(d => {
+                            innerData += `<li class="list-group-item">${d}<div class="text-right" style="text-align:right"><button type="button" class="btn btn-info">Edit</button><button type="button" class="btn btn-danger">Delete</button></div ></li>`.trim()
+                        })
+                    }
+                    console.log(innerData)
+                    document.querySelector('#notesList').innerHTML = innerData
 
                     // alert(res.data)
                     if (!res?.data) {
@@ -184,6 +195,19 @@
             <button id="saveLink" class="btn btn-success my-4"
                 style="background: #FF6D28 !important; width: 100%; border-color: #FF6D28; outline: 0;" ` type="submit"
                 onClick="saveLink()">Save Note </button>
+
+            <ul class="list-group" id="notesList">
+                <li class="list-group-item">Cras justo odio
+                    <div class="text-right" style="text-align:right">
+                        <button type="button" class="btn btn-info">Edit</button>
+                        <button type="button" class="btn btn-danger">Delete</button>
+                    </div>
+                </li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Morbi leo risus</li>
+                <li class="list-group-item">Porta ac consectetur ac</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
         </div>
         <div id="premiumDiv" style="display: none;">
             <!-- <img style="width: 20px; height: 20px; margin: 10px 5px;" src="./exit.png" alt="back" onclick="webviewClose()"> -->
