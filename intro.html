@@ -86,7 +86,6 @@
           }
           document.getElementById("mainContainer").classList.add("d-flex")
           if (res?.meetingDetails?.intro_text) {
-            document.getElementById("displayMeeting").style.display = '';
             document.querySelector('#displayMeetingText').value = res?.meetingDetails?.intro_text
             document.getElementById("meetingLink").value = res?.meetingDetails?.intro_text
 
@@ -103,12 +102,10 @@
     function changeText(params) {
       document.getElementById("addMeetingWrapper").style.display = 'block';
       document.getElementById("cancelButton").style.display = 'block';
-      document.getElementById("displayMeeting").style.display = 'none';
       document.getElementById("meetingLink").value = document.querySelector('#displayMeetingText').value
     }
     function cancelLink(params) {
       document.getElementById("addMeetingWrapper").style.display = 'none';
-      document.getElementById("displayMeeting").style.display = 'block';
     }
     async function saveLink() {
       document.getElementById("saveLink").className += " " + "disabled";
@@ -152,7 +149,7 @@
           ]
 
         }
-        const message = "Here is your intro text: <pre>​" + meetingLink + "</pre>%0A%0A ​Click on the text to copy 👆. "
+        const message = "Here is your intro text: <code>​" + meetingLink + "</code>%0A%0A ​Click on the text to copy 👆. "
         fetch("https://api.telegram.org/bot" + botArray[0] + "/sendMessage?chat_id=" + botArray[1] + "&text=" + message + "&reply_markup=" +
           JSON.stringify(option)
           + "&parse_mode=HTML", {
@@ -191,7 +188,7 @@
         <img style="height: 40px; width: 40px;" src="./chapterx.png" alt="ChapterX">
       </div>
       <strong for=" text" class="form-label my-2 ">Customize Intro Text </strong>
-      <div class="hide" style="display:none" id="addMeetingWrapper">
+      <div class="hide" style="" id="addMeetingWrapper">
         <input type="text" name="text" id="meetingLink" class="form-control " placeholder="Eg: Whats up">
         <div class="text-center">
           <button type="submit" class="btn btn-success my-4 " id="saveLink"
@@ -202,18 +199,7 @@
             type="submit" onClick="cancelLink()">Cancel</button>
         </div>
       </div>
-      <div class="hide" id="displayMeeting" style="display: none;">
-        <input type="text" id="displayMeetingText" disabled name="text" id="meetingLink" class="form-control "
-          placeholder="Eg: meet.google.com/zrs-kydu-dvh">
-        <div class="text-center">
-          <button type="submit" class="btn btn-success my-4 " id="saveLink"
-            style="background: #FF6D28 !important; width: 100%; border-color: #FF6D28; outline: 0;" type="submit"
-            onClick="copyText()">Copy Intro Text</button>
-          <button type="submit" class="btn btn-success  " id="saveLink"
-            style="background: #FF6D28 !important; width: 100%; border-color: #FF6D28; outline: 0;" type="submit"
-            onClick="changeText()">Change Intro Text</button>
-        </div>
-      </div>
+
       <!-- </form> -->
     </div>
     <div id="premiumDiv" style="display: none;">
