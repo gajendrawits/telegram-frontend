@@ -103,7 +103,7 @@
                     if (notes.length) {
 
                         notes.forEach(d => {
-                            innerData += `<li class="list-group-item">${d?.text}<div class="text-right" style="text-align:right"><button type="button" onclick="editNotes(\'${d?.text}\',${d.id})" class="btn btn-info">Edit</button><button type="button" onClick="deleteNotes(${d.id})" class="btn btn-danger">Delete</button></div ></li>`.trim()
+                            innerData += `<li class="list-group-item">${d?.text}<div class="text-right" style="text-align:right"><button type="button" onclick="editNotes(\'${d?.text}\',${d.id})" class="btn btn-info">Edit</button><button type="button"  style="background: #FF6D28 !important;border-color: #FF6D28; outline: 0;"  onClick="deleteNotes(${d.id})" class="btn btn-danger">Delete</button></div ></li>`.trim()
                         })
                     }
                     console.log(innerData)
@@ -185,6 +185,7 @@
                 })
             })
             if (res.status === 200) {
+                document.getElementById("saveLink").classList.remove("disabled")
                 checnewUser()
             }
 
