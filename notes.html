@@ -60,7 +60,7 @@
             // prompt("Edit your note", "Hello world");
             alert(retVal)
         }
-        function deleteNotes() {
+        function editNotes() {
             // var retVal = confirm("Do you want to delete?");
             prompt("Edit your note", "Hello world");
             // alert(retVal)
@@ -89,7 +89,7 @@
                     if (notes.length) {
 
                         notes.forEach(d => {
-                            innerData += `<li class="list-group-item">${d}<div class="text-right" style="text-align:right"><button type="button" class="btn btn-info">Edit</button><button type="button" onClick="deleteNotes()" class="btn btn-danger">Delete</button></div ></li>`.trim()
+                            innerData += `<li class="list-group-item">${d}<div class="text-right" style="text-align:right"><button type="button" onclick="editNotes()" class="btn btn-info">Edit</button><button type="button" onClick="deleteNotes()" class="btn btn-danger">Delete</button></div ></li>`.trim()
                         })
                     }
                     console.log(innerData)
