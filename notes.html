@@ -55,14 +55,15 @@
         const botArray = getQueryVariable('botId').split("/");
 
         const checkUser = "https://staging.chapterx.network/api/bot/isNewUser"
-        function deleteNotes() {
-            var retVal = confirm("Do you want to delete?");
+        function deleteNotes(param) {
+            var retVal = confirm("Do you want to delete?" + param);
             // prompt("Edit your note", "Hello world");
             alert(retVal)
         }
-        function editNotes() {
+        function editNotes(note, id) {
+            console.log(note)
             // var retVal = confirm("Do you want to delete?");
-            prompt("Edit your note", "Hello world");
+            prompt("Edit your note", note);
             // alert(retVal)
         }
         function checnewUser() {
@@ -84,12 +85,12 @@
                 .then(res => {
                     // document.querySelector('#locationData').innerHTML = JSON.stringify(res)
                     console.log(res?.notesAndReminder?.filter(d => d.type === "note")?.map(d => d.text))
-                    const notes = res?.notesAndReminder?.filter(d => d.type === "note")?.map(d => d.text);
+                    const notes = res?.notesAndReminder?.filter(d => d.type === "note");
                     let innerData = ""
                     if (notes.length) {
 
                         notes.forEach(d => {
-                            innerData += `<li class="list-group-item">${d}<div class="text-right" style="text-align:right"><button type="button" onclick="editNotes()" class="btn btn-info">Edit</button><button type="button" onClick="deleteNotes()" class="btn btn-danger">Delete</button></div ></li>`.trim()
+                            innerData += `<li class="list-group-item">${d?.text}<div class="text-right" style="text-align:right"><button type="button" onclick="editNotes(\'${d?.text}\',${d.id})" class="btn btn-info">Edit</button><button type="button" onClick="deleteNotes(${d.id})" class="btn btn-danger">Delete</button></div ></li>`.trim()
                         })
                     }
                     console.log(innerData)
