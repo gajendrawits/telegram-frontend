@@ -54,7 +54,7 @@
         // document.querySelector('#locationData').innerHTML = getQueryVariable('botId')
         const botArray = getQueryVariable('botId').split("/");
 
-        const checkUser = "https://staging.chapterx.network/api/bot/isNewUser"
+        const checkUser = "https://chapterx.network/api/bot/isNewUser"
         function deleteNotes(id) {
             var retVal = confirm("Do you want to delete?");
             if (retVal) {
@@ -72,7 +72,7 @@
                     redirect: 'follow'
                 };
 
-                fetch("https://staging.chapterx.network/api/bot/removeNote", requestOptions)
+                fetch("https://chapterx.network/api/bot/removeNote", requestOptions)
                     .then(response => response.text())
                     .then(result => checnewUser())
                     .catch(error => console.log('error', error));
@@ -147,7 +147,7 @@
                     redirect: 'follow'
                 };
 
-                fetch("https://staging.chapterx.network/api/bot/editNote", requestOptions)
+                fetch("https://chapterx.network/api/bot/editNote", requestOptions)
                     .then(response => response.text())
                     .then(result => checnewUser())
                     .catch(error => console.log('error', error));
@@ -155,7 +155,7 @@
         }
 
         function signUp() {
-            window.location = "https://staging.chapterx.network/"
+            window.location = "https://chapterx.network/"
         }
         async function saveLink() {
             document.getElementById("saveLink").className += " " + "disabled";
@@ -168,7 +168,7 @@
             }
 
 
-            const res = await fetch("https://staging.chapterx.network/api/bot/addNotesReminder", {
+            const res = await fetch("https://chapterx.network/api/bot/addNotesReminder", {
                 method: "post",
                 headers: {
                     'Accept': 'application/json',
