@@ -123,32 +123,33 @@
           .catch(err => {
             // alert('Error in copying text: ', err);
           });
+        alert("Meeting link saved successfully.")
+        webviewClose()
+        // const message = "<code>​" + meetingLink + "</code>%0A%0A Click on Meeting Link to copy 👆. "
+        // const option = {
+        //   "inline_keyboard": [
+        //     [
+        //       {
+        //         "text": "​Change Link",
+        //         "web_app": {
+        //           "url": frontEndUrl + "/index.html?botId=" + botArray[0] + "/" + botArray[1] + "/" + botArray[2]
+        //         },
+        //       },
+        //     ],
+        //   ]
 
-        const message = "<code>​" + meetingLink + "</code>%0A%0A Click on Meeting Link to copy 👆. "
-        const option = {
-          "inline_keyboard": [
-            [
-              {
-                "text": "​Change Link",
-                "web_app": {
-                  "url": frontEndUrl + "/index.html?botId=" + botArray[0] + "/" + botArray[1] + "/" + botArray[2]
-                },
-              },
-            ],
-          ]
-
-        }
-        fetch("https://api.telegram.org/bot" + botArray[0] + "/sendMessage?chat_id=" + botArray[1] + "&text=" + message + "&reply_markup=" +
-          JSON.stringify(option)
-          + "&parse_mode=HTML", {
-          method: "get",
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-        }).then(() => {
-          webviewClose()
-        })
+        // }
+        // fetch("https://api.telegram.org/bot" + botArray[0] + "/sendMessage?chat_id=" + botArray[1] + "&text=" + message + "&reply_markup=" +
+        //   JSON.stringify(option)
+        //   + "&parse_mode=HTML", {
+        //   method: "get",
+        //   headers: {
+        //     'Accept': 'application/json',
+        //     'Content-Type': 'application/json'
+        //   },
+        // }).then(() => {
+        //   webviewClose()
+        // })
 
       }
 
