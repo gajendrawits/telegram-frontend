@@ -9,54 +9,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="MobileOptimized" content="176" />
   <meta name="HandheldFriendly" content="True" />
-
   <meta name="robots" content="noindex,nofollow" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
-  <title></title>
-  <script src="https://telegram.org/js/telegram-web-app.js?1"></script>
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+  <title>
+  </title>
+  <script src="https://telegram.org/js/telegram-web-app.js?1">
+  </script>
+  <script src="js/index.js"></script>
   <script>
-    const frontEndUrl = "https://gajendrawits.github.io/telegram-frontend"
-
-    // document.querySelector('#locationData').innerHTML = initDataUnsafe.user.username;
-    function setThemeClass() {
-      document.documentElement.className = Telegram.WebApp.colorScheme;
-    }
-    Telegram.WebApp.onEvent('themeChanged', setThemeClass);
-    setThemeClass();
-
-    function webviewClose() {
-      Telegram.WebApp.close();
-    }
-    function copyText() {
-      let text = document.getElementById("displayMeetingText").value;
-      // alert(text)
-      navigator.clipboard.writeText(text)
-        .then(() => {
-          alert('Text copied to clipboard');
-        })
-        .catch(err => {
-          // alert('Error in copying text: ', err);
-        });
-    }
-    function getQueryVariable(variable) {
-      var query = window.location.search.substring(1);
-      var vars = query.split("&");
-      for (var i = 0; i < vars.length; i++) {
-        var pair = vars[i].split("=");
-        if (pair[0] == variable) {
-          return pair[1];
-        }
-      }
-      alert('Query Variable ' + variable + ' not found');
-    }
     const botArray = getQueryVariable('botId').split("/");
     // document.querySelector('#locationData').innerHTML = getQueryVariable('botId')
-
-    const checkUser = "https://chapterx.network/api/bot/isNewUser"
 
     function checnewUser() {
       fetch(checkUser, {
@@ -64,23 +30,25 @@
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
-        },
+        }
+        ,
         body: JSON.stringify({
           "bot_id": botArray[0],
           "host_chat_id": botArray[1],
           "receiver_chat_id": botArray[2],
           "username": initDataUnsafe?.user?.username
-        })
-      }).then((response) => {
+        }
+        )
+      }
+      ).then((response) => {
         return response.json();
-      })
+      }
+      )
         .then(res => {
           // alert(res.data)
           // document.querySelector('#locationData').innerHTML = JSON.stringify(res?.data)
-
           if (!res?.data) {
             document.getElementById("premiumDiv").style.display = '';
-
             // window.location = "https://gajendrawits.github.io/telegram-frontend/premium.html"
             return
           }
@@ -88,16 +56,16 @@
           if (res?.meetingDetails?.intro_text) {
             // document.querySelector('#displayMeetingText').value = res?.meetingDetails?.intro_text
             document.getElementById("meetingLink").value = res?.meetingDetails?.intro_text
-
             // document.querySelector('#locationData').innerHTML = res?.meetingDetails?.meeting_link
-          } else {
+          }
+          else {
             document.getElementById("addMeetingWrapper").style.display = '';
           }
-
-        })
+        }
+        )
     }
     function signUp() {
-      window.location = "https://chapterx.network/"
+      window.location = baseUrl + "/"
     }
     function changeText(params) {
       document.getElementById("addMeetingWrapper").style.display = 'block';
@@ -115,27 +83,32 @@
         document.getElementById("saveLink").classList.remove("disabled")
         return false
       }
-      const res = await fetch("https://chapterx.network/api/bot/addMeeting", {
+      const res = await fetch(baseUrl + "/api/bot/addMeeting", {
         method: "post",
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
-        },
+        }
+        ,
         //make sure to serialize your JSON body
         body: JSON.stringify({
           "bot_id": botArray[0],
           "host_chat_id": botArray[1],
           "intro_text": meetingLink
-        })
-      })
+        }
+        )
+      }
+      )
       if (res.status === 200) {
         navigator.clipboard.writeText(meetingLink)
           .then(() => {
             alert("Intro text saved successfully. Link copied in clipboard")
-          })
+          }
+          )
           .catch(err => {
             // alert('Error in copying text: ', err);
-          });
+          }
+          );
         const option = {
           "inline_keyboard": [
             [
@@ -143,11 +116,12 @@
                 "text": "​Change Intro Text",
                 "web_app": {
                   "url": frontEndUrl + "/intro.html?botId=" + botArray[0] + "/" + botArray[1] + "/" + botArray[2]
-                },
-              },
+                }
+                ,
+              }
+              ,
             ],
           ]
-
         }
         const message = "<code>​" + meetingLink + "</code>%0A​Click on Intro Text to copy👆. "
         fetch("https://api.telegram.org/bot" + botArray[0] + "/sendMessage?chat_id=" + botArray[1] + "&text=" + message + "&reply_markup=" +
@@ -157,49 +131,43 @@
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
-          },
-        }).then(() => {
+          }
+          ,
+        }
+        ).then(() => {
           webviewClose()
-        })
-        // fetch("https://api.telegram.org/bot" + botArray[0] + "/sendMessage?chat_id=" + botArray[2] + "&text=" + message, {
-        //   method: "get",
-        //   headers: {
-        //     'Accept': 'application/json',
-        //     'Content-Type': 'application/json'
-        //   },
-
+        }
+        )
       }
-
     }
-
   </script>
-
 </head>
 
 <body>
   <img style="width: 20px; height: 20px; margin: 10px 5px;" src="./exit.png" alt="back" onclick="webviewClose()">
-  <span id="locationData"></span>
-
+  <span id="locationData">
+  </span>
   <section class="d-flex justify-content-center text-center" style="height: 100vh; width: 100%; margin-top: 50px;">
-
     <div class="mb-3 mt-3 p-2 flex-column hide " style="width:100%;display:none;" id="mainContainer">
       <!-- <form action="#" class=""> -->
       <div>
         <img style="height: 40px; width: 40px;" src="./chapterx.png" alt="ChapterX">
       </div>
-      <strong for=" text" class="form-label my-2 ">Customize Intro Text </strong>
+      <strong for=" text" class="form-label my-2 ">Customize Intro Text
+      </strong>
       <div class="hide" style="" id="addMeetingWrapper">
         <input type="text" name="text" id="meetingLink" class="form-control " placeholder="Eg: Whats up">
         <div class="text-center">
           <button type="submit" class="btn btn-success my-4 " id="saveLink"
             style="background: #FF6D28 !important; width: 100%; border-color: #FF6D28; outline: 0;" type="submit"
-            onClick="saveLink()">Save</button>
+            onClick="saveLink()">Save
+          </button>
           <button type="submit" class="btn btn-success " id="cancelButton"
             style="background: #FF6D28 !important; width: 100%; border-color: #FF6D28; outline: 0; display: none;"
-            type="submit" onClick="cancelLink()">Cancel</button>
+            type="submit" onClick="cancelLink()">Cancel
+          </button>
         </div>
       </div>
-
       <!-- </form> -->
     </div>
     <div id="premiumDiv" style="display: none;">
@@ -209,10 +177,12 @@
           <div class="text-center">
             <img style="height: 40px; width: 40px;" src="./chapterx.png" alt="ChapterX">
           </div>
-          <p class="mt-2">Sign-up for an account to unlock premium 💎 features!</p>
+          <p class="mt-2">Sign-up for an account to unlock premium 💎 features!
+          </p>
           <button type="submit" class="btn btn-success my-4 " id="saveLink"
             style="background: #FF6D28 !important; width: 100%; border-color: #FF6D28; outline: 0;" type="submit"
-            onClick="signUp()">Sign Up</button>
+            onClick="signUp()">Sign Up
+          </button>
         </div>
       </section>
     </div>
@@ -221,9 +191,9 @@
 <script>
   Telegram.WebApp.ready();
   const initData = Telegram.WebApp.initData || '';
-  const initDataUnsafe = Telegram.WebApp.initDataUnsafe || {};
+  const initDataUnsafe = Telegram.WebApp.initDataUnsafe || {
+  };
   checnewUser()
-
 </script>
 
 </html>
