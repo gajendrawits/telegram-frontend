@@ -1,6 +1,6 @@
 // document.querySelector('#locationData').innerHTML = initDataUnsafe.user.username;
 const frontEndUrl = "https://gajendrawits.github.io/telegram-frontend"
-const baseUrl = "https://staging.chapterx.network"
+const baseUrl = "https://chapterx.network"
 const checkUser = baseUrl + "/api/bot/isNewUser"
 function setThemeClass() {
     document.documentElement.className = Telegram.WebApp.colorScheme;
