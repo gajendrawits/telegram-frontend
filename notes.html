@@ -42,12 +42,12 @@
                 };
                 fetch(baseUrl + "/api/bot/removeNote", requestOptions)
                     .then(response => response.text())
-                    .then(result => checnewUser())
+                    .then(result => checkUserData())
                     .catch(error => console.log('error', error));
             }
             // prompt("Edit your note", "Hello world");
         }
-        function checnewUser() {
+        function checkUserData() {
             fetch(checkUser, {
                 method: "post",
                 headers: {
@@ -116,7 +116,7 @@
                 };
                 fetch(baseUrl + "/api/bot/editNote", requestOptions)
                     .then(response => response.text())
-                    .then(result => checnewUser())
+                    .then(result => checkUserData())
                     .catch(error => console.log('error', error));
             }
         }
@@ -148,7 +148,7 @@
                 })
             })
             if (res.status === 200) {
-                checnewUser()
+                checkUserData()
             }
         }
     </script>
@@ -211,7 +211,7 @@
     const initData = Telegram.WebApp.initData || '';
     const initDataUnsafe = Telegram.WebApp.initDataUnsafe || {
     };
-    checnewUser()
+    checkUserData()
 </script>
 
 </html>

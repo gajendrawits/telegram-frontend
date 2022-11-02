@@ -27,7 +27,7 @@
     const botArray = getQueryVariable('botId').split("/");
     // document.querySelector('#locationData').innerHTML = getQueryVariable('botId')
 
-    function checnewUser() {
+    function checkUserData() {
       fetch(checkUser, {
         method: "post",
         headers: {
@@ -168,7 +168,7 @@
   const initData = Telegram.WebApp.initData || '';
   const initDataUnsafe = Telegram.WebApp.initDataUnsafe || {
   };
-  checnewUser()
+  checkUserData()
 </script>
 
 </html>
