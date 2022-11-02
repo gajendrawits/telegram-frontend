@@ -21,10 +21,7 @@
     </script>
     <script src="js/index.js"></script>
     <script>
-
-        // document.querySelector('#locationData').innerHTML = getQueryVariable('botId')
         const botArray = getQueryVariable('botId').split("/");
-
         function deleteNotes(id) {
             var retVal = confirm("Do you want to delete?");
             if (retVal) {
